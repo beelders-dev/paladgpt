@@ -1,0 +1,147 @@
+openapi: 3.1.0
+
+info:
+  title: PaladGPT API
+  version: 0.1.0
+  description: >
+    API contract for PaladGPT, an entertainment-focused palm-scanning
+    application that generates fictional career predictions.
+
+servers:
+  - url: http://localhost:8000
+    description: Local development backend
+
+tags:
+  - name: Health
+    description: Backend health checks
+  - name: Scans
+    description: Palm image scanning and career predictions
+
+paths:
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Check backend availability
+      operationId: getHealth
+      responses:
+        "200":
+          description: Backend is running
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+              example:
+                status: ok
+
+  /api/v1/scans:
+    post:
+      tags:
+        - Scans
+      summary: Submit a palm image and receive a career prediction
+      operationId: createScan
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ScanRequest"
+      responses:
+        "200":
+          description: Prediction generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PredictionResponse"
+              example:
+                job_title: Supreme Taho Distribution Officer
+                kapalaran_score: 98
+                explanation: May future ka sa industriya ng taho!
+
+        "400":
+          description: Invalid or missing image
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                error:
+                  code: INVALID_IMAGE
+                  message: Please upload a valid palm image.
+
+        "413":
+          description: Uploaded image exceeds the size limit
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+        "422":
+          description: Palm features could not be extracted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+        "502":
+          description: The prediction service returned an invalid response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+        "503":
+          description: The prediction service is unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+        "504":
+          description: The prediction service timed out
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+        "500":
+          description: Unexpected backend error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+
+    ScanRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - image
+      properties:
+        image:
+          type: string
+          format: binary
+          description: Image of the user's palm.
+
+    PredictionResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - job_title
+        - kapalaran_score
+        - explanation
+      properties:
+        job_title:
+          type: string

@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+.venv/
+venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Frontend build output
+dist/
+build/
+.next/
+.vite/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local databases and temporary files
+*.sqlite3
+*.db
+tmp/
+temp/
+
+# Test and coverage artifacts
+coverage/
+playwright-report/
+test-results/
+
+# Local configuration
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
