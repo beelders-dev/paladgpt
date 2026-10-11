@@ -145,4 +145,10 @@ components:
       properties:
         job_title:
           type: string
+        explanation:
+          type: string
+        kapalaran_score:
+          type: integer
+          minimum: 0
+          maximum: 100
         
