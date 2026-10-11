@@ -34,7 +34,7 @@ paths:
               example:
                 status: ok
 
-  /api/v1/scans:
+  /api/v1/palm-scan-prediction:
     post:
       tags:
         - Scans
@@ -45,14 +45,14 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/ScanRequest"
+              $ref: "#/components/schemas/PalmScanPredictionRequest"
       responses:
         "200":
           description: Prediction generated successfully
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PredictionResponse"
+                $ref: "#/components/schemas/PalmPredictionResponse"
               example:
                 job_title: Supreme Taho Distribution Officer
                 kapalaran_score: 98
@@ -124,7 +124,7 @@ components:
           enum:
             - ok
 
-    ScanRequest:
+    PalmScanPredictionRequest:
       type: object
       additionalProperties: false
       required:
@@ -135,7 +135,7 @@ components:
           format: binary
           description: Image of the user's palm.
 
-    PredictionResponse:
+    PalmPredictionResponse:
       type: object
       additionalProperties: false
       required:
@@ -145,3 +145,10 @@ components:
       properties:
         job_title:
           type: string
+        explanation:
+          type: string
+        kapalaran_score:
+          type: integer
+          minimum: 0
+          maximum: 100
+        
