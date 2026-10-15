@@ -17,12 +17,23 @@
       alt="Witch"
       class="max-w-110"
     />
-
-    <img
-      src={menuTarp}
-      alt="Menu tarp"
-      class="max-w-70 -ml-20 -mt-10"
-    />
+    
+    <div class="relative w-70 -ml-10 -mt-10 flex items-center justify-center">
+      <div class="bg-blue-200 w-full h-full absolute opacity-0">
+        <button class="absolute w-[23%] top-[22%] left-[29%] aspect-[10/11] h-auto bg-red-500 opacity-100"> </button>
+        <button class="absolute w-[23%] top-[22%] left-[57%] aspect-[100/113] h-auto bg-red-500 opacity-100"> </button>
+        <button class="absolute w-[23%] top-[41%] left-[29%] aspect-[10/11] h-auto bg-red-500 opacity-100"> </button>
+        <button class="absolute w-[23%] top-[42%] left-[57%] aspect-[10/11] h-auto bg-red-500 opacity-100"> </button>
+        <button class="absolute w-[23%] top-[60%] left-[29%] aspect-[100/114] h-auto bg-red-500 opacity-100"> </button>
+        <button class="absolute w-[23%] top-[60%] left-[57%] aspect-[100/112] h-auto bg-red-500 opacity-100"> </button>
+        
+      </div>
+      <img
+        src={menuTarp}
+        alt="Menu tarp"
+        class="w-full"
+      />
+    </div>
   </div>
 </main>
 
