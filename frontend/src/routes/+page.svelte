@@ -1,7 +1,30 @@
-<main
-	class="night-sky relative isolate min-h-svh overflow-hidden bg-[#020817]"
-	aria-label="Starry night sky"
-></main>
+<script>
+	import '@fontsource/henny-penny';
+	import menuTarp from '$lib/assets/menu-tarp.png';
+	import witch from '$lib/assets/whitch.png';
+</script>
+
+<main class="night-sky relative isolate min-h-svh overflow-hidden bg-[#020817]">
+	<header class="relative z-10 px-6 pt-8 text-center sm:pt-12">
+		<h1 class="mb-15 font-['Henny_Penny'] text-4xl tracking-[0.2em] text-yellow-100 drop-shadow-lg sm:text-6xl">
+		  Palad Gpt	
+		</h1>
+	</header>
+
+  <div class="w-full flex flex-row items-center justify-center gap-15">
+    <img
+      src={witch}
+      alt="Witch"
+      class="max-w-110"
+    />
+
+    <img
+      src={menuTarp}
+      alt="Menu tarp"
+      class="max-w-70 -ml-20 -mt-10"
+    />
+  </div>
+</main>
 
 <style>
 	.night-sky {
