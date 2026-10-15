@@ -1,7 +1,8 @@
 <script>
 	import '@fontsource/henny-penny';
-	import menuTarp from '$lib/assets/menu-tarp.png';
-	import witch from '$lib/assets/whitch.png';
+	import menuTarpImage from '$lib/assets/menu-tarp.png';
+  import handIconImage from "$lib/assets/hand-icon.png"
+	import witchImage from '$lib/assets/whitch.png';
 </script>
 
 <main class="night-sky relative isolate min-h-svh overflow-hidden bg-[#020817]">
@@ -13,23 +14,25 @@
 
   <div class="w-full flex flex-row items-center justify-center gap-15">
     <img
-      src={witch}
+      src={witchImage}
       alt="Witch"
       class="max-w-110"
     />
     
     <div class="relative w-70 -ml-10 -mt-10 flex items-center justify-center">
-      <div class="bg-blue-200 w-full h-full absolute opacity-0">
-        <button class="absolute w-[23%] top-[22%] left-[29%] aspect-[10/11] h-auto bg-red-500 opacity-100"> </button>
-        <button class="absolute w-[23%] top-[22%] left-[57%] aspect-[100/113] h-auto bg-red-500 opacity-100"> </button>
-        <button class="absolute w-[23%] top-[41%] left-[29%] aspect-[10/11] h-auto bg-red-500 opacity-100"> </button>
-        <button class="absolute w-[23%] top-[42%] left-[57%] aspect-[10/11] h-auto bg-red-500 opacity-100"> </button>
-        <button class="absolute w-[23%] top-[60%] left-[29%] aspect-[100/114] h-auto bg-red-500 opacity-100"> </button>
-        <button class="absolute w-[23%] top-[60%] left-[57%] aspect-[100/112] h-auto bg-red-500 opacity-100"> </button>
-        
+      <div class="bg-tranparent w-full h-full absolute opacity-100">
+        <button class="flex flex-col items-center justify-center absolute w-[23%] top-[22%] left-[29%] aspect-[10/11] h-auto bg-transparent opacity-100">
+          <img class="menu-icon w-4/5" src={handIconImage} alt="Hand" />
+        </button>
+        <button class="absolute w-[23%] top-[22%] left-[57%] aspect-[100/113] h-auto bg-transparent opacity-100"> </button>
+        <button class="absolute w-[23%] top-[41%] left-[29%] aspect-[10/11] h-auto bg-transparent opacity-100"> </button>
+        <button class="absolute w-[23%] top-[42%] left-[57%] aspect-[10/11] h-auto bg-transparent opacity-100"> </button>
+        <button class="absolute w-[23%] top-[60%] left-[29%] aspect-[100/114] h-auto bg-transparent opacity-100"> </button>
+        <button class="absolute w-[23%] top-[60%] left-[57%] aspect-[100/112] h-auto bg-transparent opacity-100"> </button>
       </div>
+
       <img
-        src={menuTarp}
+        src={menuTarpImage}
         alt="Menu tarp"
         class="w-full"
       />
@@ -97,4 +100,13 @@
 			animation: none;
 		}
 	}
+
+	.menu-icon {
+		transition: transform 150ms ease-out;
+	}
+
+	.menu-icon:hover {
+		transform: scale(1.1);
+	}
+
 </style>
