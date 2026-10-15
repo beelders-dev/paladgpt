@@ -27,6 +27,7 @@
 		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
+		"@fontsource/henny-penny": "^5.3.0",
 		"@fortawesome/fontawesome-free": "^7.3.1"
 	}
 }
