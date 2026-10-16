@@ -69,8 +69,9 @@
 				onclick={(event) => event.stopPropagation()}
 			>
 				<img class="h-full w-full -mt-[12%]" src={birdTarpPopupImage} alt="Bird tarp" />
-        <div class="h-full w-full bg-blues-300 opacity-100 absolute"> 
-          
+        <div class="h-full w-full absolute"> 
+          <button class="absolute w-[56%] h-[7%] top-[58%] left-[22%]"> </button> 
+          <button class="absolute w-[52%] h-[9%] top-[73%] left-[24%]"> </button> 
         </div>
 
 			</div>
