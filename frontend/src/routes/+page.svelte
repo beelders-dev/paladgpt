@@ -22,7 +22,7 @@
     <img
       src={witchImage}
       alt="Witch"
-      class="max-w-110"
+      class="min-w-60 max-w-110"
     />
     
     <div class="relative w-70 -ml-10 -mt-10 flex items-center justify-center">
@@ -69,9 +69,9 @@
 				onclick={(event) => event.stopPropagation()}
 			>
 				<img class="h-full w-full -mt-[12%]" src={birdTarpPopupImage} alt="Bird tarp" />
-        <div class="h-full w-full absolute"> 
-          <button class="absolute w-[56%] h-[7%] top-[58%] left-[22%]"> </button> 
-          <button class="absolute w-[52%] h-[9%] top-[73%] left-[24%]"> </button> 
+        <div class="h-full w-full opacity-50 absolute"> 
+          <button class="absolute bg-green-300 w-[56%] h-[7%] top-[58%] left-[22%]"> </button> 
+          <button class="absolute bg-green-300 w-[52%] h-[9%] top-[73%] left-[24%]"> </button> 
         </div>
 
 			</div>
