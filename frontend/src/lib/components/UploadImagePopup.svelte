@@ -33,6 +33,7 @@
 		>
 			<img class="-mt-[12%] h-full w-full" src={birdTarpPopupImage} alt="Bird tarp" />
 			<div class="absolute h-full w-full opacity-50">
+        <div class="absolute bg-green-300 w-[60%] h-[41%] top-[26%] left-[20%]"> </div>
 				<button class="absolute top-[58%] left-[22%] h-[7%] w-[56%]" aria-label="Select image"></button>
 				<button class="absolute top-[73%] left-[24%] h-[9%] w-[52%]" aria-label="Upload image"></button>
 			</div>
