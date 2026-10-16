@@ -5,7 +5,14 @@
 	import witchImage from '$lib/assets/whitch.png';
 	import UploadImagePopup from '$lib/components/UploadImagePopup.svelte';
 
+	/** @typedef {{ job_title: string, kapalaran_score: number, explanation: string }} PalmPrediction */
 	let isBirdPopupOpen = $state(false);
+	let latestPrediction = $state(/** @type {PalmPrediction | null} */ (null));
+
+	/** @param {PalmPrediction} prediction */
+	function savePrediction(prediction) {
+		latestPrediction = prediction;
+	}
 </script>
 
 <main class="night-sky relative isolate min-h-svh overflow-hidden bg-[#020817]">
@@ -47,7 +54,7 @@
     </div>
   </div>
 
-	<UploadImagePopup bind:isOpen={isBirdPopupOpen} />
+	<UploadImagePopup bind:isOpen={isBirdPopupOpen} onPrediction={savePrediction} />
 </main>
 
 <style>
