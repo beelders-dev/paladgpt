@@ -1,15 +1,12 @@
 <script>
 	import '@fontsource/henny-penny';
-	import { fade, fly } from 'svelte/transition';
 	import menuTarpImage from '$lib/assets/menu-tarp.png';
 	import handIconImage from '$lib/assets/hand-icon.png';
-	import birdTarpPopupImage from '$lib/assets/bird-tarp-popup.png';
 	import witchImage from '$lib/assets/whitch.png';
+	import UploadImagePopup from '$lib/components/UploadImagePopup.svelte';
 
 	let isBirdPopupOpen = $state(false);
 </script>
-
-<svelte:window onkeydown={(event) => event.key === 'Escape' && (isBirdPopupOpen = false)} />
 
 <main class="night-sky relative isolate min-h-svh overflow-hidden bg-[#020817]">
 	<header class="relative z-10 px-6 pt-8 text-center sm:pt-12">
@@ -50,33 +47,7 @@
     </div>
   </div>
 
-	{#if isBirdPopupOpen}
-		<div
-			class="fixed inset-0 z-20 grid place-items-center bg-black/55 p-6 backdrop-blur-sm"
-			transition:fade={{ duration: 220 }}
-			role="button"
-			tabindex="0"
-			aria-label="Close bird popup"
-			onclick={() => (isBirdPopupOpen = false)}
-		>
-			<div
-				class="relative w-110 h-120 bg-reds-300 flex flex-col items-center"
-				role="dialog"
-				aria-modal="true"
-				aria-label="Bird popup"
-				in:fly={{ y: -1000, duration: 320, easing: (t) => 1 - (1 - t) ** 3 }}
-				out:fly={{ y: -1000, duration: 260 }}
-				onclick={(event) => event.stopPropagation()}
-			>
-				<img class="h-full w-full -mt-[12%]" src={birdTarpPopupImage} alt="Bird tarp" />
-        <div class="h-full w-full opacity-50 absolute"> 
-          <button class="absolute bg-green-300 w-[56%] h-[7%] top-[58%] left-[22%]"> </button> 
-          <button class="absolute bg-green-300 w-[52%] h-[9%] top-[73%] left-[24%]"> </button> 
-        </div>
-
-			</div>
-		</div>
-	{/if}
+	<UploadImagePopup bind:isOpen={isBirdPopupOpen} />
 </main>
 
 <style>
