@@ -1,8 +1,18 @@
 <script>
 	import '@fontsource/henny-penny';
 	import menuTarpImage from '$lib/assets/menu-tarp.png';
-  import handIconImage from "$lib/assets/hand-icon.png"
+	import handIconImage from '$lib/assets/hand-icon.png';
 	import witchImage from '$lib/assets/whitch.png';
+	import UploadImagePopup from '$lib/components/UploadImagePopup.svelte';
+
+	/** @typedef {{ job_title: string, kapalaran_score: number, explanation: string }} PalmPrediction */
+	let isBirdPopupOpen = $state(false);
+	let latestPrediction = $state(/** @type {PalmPrediction | null} */ (null));
+
+	/** @param {PalmPrediction} prediction */
+	function savePrediction(prediction) {
+		latestPrediction = prediction;
+	}
 </script>
 
 <main class="night-sky relative isolate min-h-svh overflow-hidden bg-[#020817]">
@@ -16,12 +26,17 @@
     <img
       src={witchImage}
       alt="Witch"
-      class="max-w-110"
+      class="min-w-60 max-w-110"
     />
     
     <div class="relative w-70 -ml-10 -mt-10 flex items-center justify-center">
       <div class="bg-tranparent w-full h-full absolute opacity-100">
-        <button class="flex flex-col items-center justify-center absolute w-[23%] top-[22%] left-[29%] aspect-[10/11] h-auto bg-transparent opacity-100">
+        <button
+			type="button"
+			class="flex flex-col items-center justify-center absolute w-[23%] top-[22%] left-[29%] aspect-[10/11] h-auto bg-transparent opacity-100"
+			onclick={() => (isBirdPopupOpen = true)}
+			aria-label="Open bird popup"
+		>
           <img class="menu-icon w-4/5" src={handIconImage} alt="Hand" />
         </button>
         <button class="absolute w-[23%] top-[22%] left-[57%] aspect-[100/113] h-auto bg-transparent opacity-100"> </button>
@@ -38,6 +53,8 @@
       />
     </div>
   </div>
+
+	<UploadImagePopup bind:isOpen={isBirdPopupOpen} onPrediction={savePrediction} />
 </main>
 
 <style>
