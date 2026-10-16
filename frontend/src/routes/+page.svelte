@@ -1,9 +1,15 @@
 <script>
 	import '@fontsource/henny-penny';
+	import { fade, fly } from 'svelte/transition';
 	import menuTarpImage from '$lib/assets/menu-tarp.png';
-  import handIconImage from "$lib/assets/hand-icon.png"
+	import handIconImage from '$lib/assets/hand-icon.png';
+	import birdTarpPopupImage from '$lib/assets/bird-tarp-popup.png';
 	import witchImage from '$lib/assets/whitch.png';
+
+	let isBirdPopupOpen = $state(false);
 </script>
+
+<svelte:window onkeydown={(event) => event.key === 'Escape' && (isBirdPopupOpen = false)} />
 
 <main class="night-sky relative isolate min-h-svh overflow-hidden bg-[#020817]">
 	<header class="relative z-10 px-6 pt-8 text-center sm:pt-12">
@@ -21,7 +27,12 @@
     
     <div class="relative w-70 -ml-10 -mt-10 flex items-center justify-center">
       <div class="bg-tranparent w-full h-full absolute opacity-100">
-        <button class="flex flex-col items-center justify-center absolute w-[23%] top-[22%] left-[29%] aspect-[10/11] h-auto bg-transparent opacity-100">
+        <button
+			type="button"
+			class="flex flex-col items-center justify-center absolute w-[23%] top-[22%] left-[29%] aspect-[10/11] h-auto bg-transparent opacity-100"
+			onclick={() => (isBirdPopupOpen = true)}
+			aria-label="Open bird popup"
+		>
           <img class="menu-icon w-4/5" src={handIconImage} alt="Hand" />
         </button>
         <button class="absolute w-[23%] top-[22%] left-[57%] aspect-[100/113] h-auto bg-transparent opacity-100"> </button>
@@ -38,6 +49,33 @@
       />
     </div>
   </div>
+
+	{#if isBirdPopupOpen}
+		<div
+			class="fixed inset-0 z-20 grid place-items-center bg-black/55 p-6 backdrop-blur-sm"
+			transition:fade={{ duration: 220 }}
+			role="button"
+			tabindex="0"
+			aria-label="Close bird popup"
+			onclick={() => (isBirdPopupOpen = false)}
+		>
+			<div
+				class="relative w-110 h-120 bg-reds-300 flex flex-col items-center"
+				role="dialog"
+				aria-modal="true"
+				aria-label="Bird popup"
+				in:fly={{ y: -1000, duration: 320, easing: (t) => 1 - (1 - t) ** 3 }}
+				out:fly={{ y: -1000, duration: 260 }}
+				onclick={(event) => event.stopPropagation()}
+			>
+				<img class="h-full w-full -mt-[12%]" src={birdTarpPopupImage} alt="Bird tarp" />
+        <div class="h-full w-full bg-blues-300 opacity-100 absolute"> 
+          
+        </div>
+
+			</div>
+		</div>
+	{/if}
 </main>
 
 <style>
