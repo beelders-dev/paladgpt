@@ -25,6 +25,10 @@ def test_valid_image_returns_success():
     )
 
     assert response.status_code == 200
+    assert response.json() == {
+        "status": "success",
+        "message": "Image validated successfully",
+    }
 
 
 def test_invalid_image_returns_400():
