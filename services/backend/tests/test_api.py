@@ -68,3 +68,22 @@ def test_image_exceeding_dimensions_returns_413():
     )
 
     assert response.status_code == 413
+
+
+def test_image_exceeding_height_returns_413():
+    buffer = io.BytesIO()
+    image = Image.new("RGB", (10, 4001), color="red")
+    image.save(buffer, format="PNG")
+
+    response = client.post(
+        "/api/v1/palm-scan-prediction",
+        files={
+            "image": (
+                "tall.png",
+                buffer.getvalue(),
+                "image/png",
+            )
+        },
+    )
+
+    assert response.status_code == 413
