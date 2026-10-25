@@ -49,7 +49,7 @@
 
 		try {
 			const formData = new FormData();
-			formData.append('image', selectedImage);
+			formData.append('image', selectedImage, selectedImage.name);
 
 			const response = await fetch(`${serverUrl}/api/v1/palm-scan-prediction`, {
 				method: 'POST',

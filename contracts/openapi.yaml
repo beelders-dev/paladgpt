@@ -42,10 +42,14 @@ paths:
       operationId: createScan
       requestBody:
         required: true
+        description: Palm image submitted as multipart form data.
         content:
           multipart/form-data:
             schema:
               $ref: "#/components/schemas/PalmScanPredictionRequest"
+            encoding:
+              image:
+                contentType: image/png, image/jpeg, image/webp
       responses:
         "200":
           description: Prediction generated successfully
@@ -151,4 +155,21 @@ components:
           type: integer
           minimum: 0
           maximum: 100
-        
+
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: string
+            message:
+              type: string
